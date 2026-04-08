@@ -330,7 +330,7 @@
   </div>
   <script>
     const bg = document.getElementById('xo-bg');
-    const syms = ['X','O','&#8594;','&#8599;','X','O'];
+    const syms = ['X','O','→','↗','X','O'];
     for(let i=0;i<30;i++){const s=document.createElement('span');s.textContent=syms[Math.floor(Math.random()*syms.length)];s.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*100}vh;font-size:${18+Math.random()*42}px;animation-duration:${14+Math.random()*22}s;animation-delay:${Math.random()*12}s;`;bg.appendChild(s);}
     function openPrivacy(){document.getElementById('privacyModal').classList.add('open');document.body.style.overflow='hidden';}
     function closePrivacy(){document.getElementById('privacyModal').classList.remove('open');document.body.style.overflow='';}
