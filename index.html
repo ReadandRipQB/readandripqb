@@ -1,1 +1,346 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read & Rip QB | Master Your Football IQ</title>
+  <meta name="description" content="The #1 QB training app for mastering coverages, pre-snap reads, and football IQ. Download Read & Rip QB today — $7.99/mo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #000B1E;
+      --bg2:       #05112B;
+      --navy:      #0A1A3A;
+      --orange:    #FF5E00;
+      --orange-lt: #FF7A22;
+      --yellow:    #FFB600;
+      --white:     #FFFFFF;
+      --gray:      #7A8BA3;
+      --gray-lt:   #BDC8D6;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+    #xo-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.04; }
+    #xo-bg span { position: absolute; font-family: 'Bebas Neue', sans-serif; color: var(--orange); animation: floatUp linear infinite; }
+    @keyframes floatUp { from { transform: translateY(105vh) rotate(0deg); opacity: 1; } to { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,11,30,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,94,0,0.14); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2.5px; color: var(--white); }
+    .nav-logo em { color: var(--orange); font-style: normal; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--gray-lt); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.4px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { background: var(--orange); color: var(--white); padding: 10px 24px; border-radius: 6px; font-weight: 700; font-size: 13px; text-decoration: none; letter-spacing: 0.5px; transition: background 0.2s, transform 0.2s; }
+    .nav-cta:hover { background: var(--orange-lt); transform: translateY(-1px); }
+    .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 130px 40px 100px; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,94,0,0.13) 0%, transparent 70%); pointer-events: none; }
+    .hero-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,94,0,0.12); border: 1px solid rgba(255,94,0,0.35); color: var(--orange); padding: 7px 20px; border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; animation: fadeDown 0.6s ease both; }
+    .hero-pill-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 1.8s ease infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 12vw, 140px); line-height: 0.92; letter-spacing: 1px; margin-bottom: 28px; animation: fadeUp 0.7s ease 0.15s both; }
+    .hero h1 .line-accent { display: block; background: linear-gradient(90deg, var(--orange), var(--yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: var(--gray-lt); max-width: 560px; line-height: 1.65; margin-bottom: 44px; animation: fadeUp 0.7s ease 0.3s both; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.45s both; }
+    .btn-primary { background: linear-gradient(135deg, var(--orange) 0%, #FF8C00 100%); color: var(--white); padding: 17px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: 0.4px; box-shadow: 0 4px 28px rgba(255,94,0,0.38); transition: all 0.25s; text-align: center; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(255,94,0,0.55); }
+    .btn-ghost { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--white); padding: 17px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: 0.4px; transition: all 0.25s; text-align: center; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.11); transform: translateY(-2px); }
+    .btn-sub { display: block; font-size: 11px; font-weight: 400; opacity: 0.65; margin-top: 5px; letter-spacing: 0.3px; }
+    .hero-stats { display: flex; gap: 56px; justify-content: center; margin-top: 72px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,0.07); animation: fadeUp 0.7s ease 0.6s both; flex-wrap: wrap; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1; background: linear-gradient(135deg, var(--white), var(--gray-lt)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 12px; color: var(--gray); margin-top: 5px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .divider { position: relative; z-index: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,94,0,0.4), transparent); }
+    section { position: relative; z-index: 1; padding: 100px 48px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .s-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+    .s-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 76px); line-height: 0.95; margin-bottom: 18px; }
+    .s-sub { font-size: 17px; color: var(--gray-lt); max-width: 520px; line-height: 1.65; }
+    .pillars { background: var(--bg2); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 60px; }
+    .pillar { padding: 52px 40px; background: var(--navy); position: relative; overflow: hidden; transition: transform 0.3s; }
+    .pillar:hover { transform: translateY(-5px); }
+    .pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+    .pillar-bg-num { font-family: 'Bebas Neue', sans-serif; font-size: 110px; color: rgba(255,94,0,0.07); line-height: 1; position: absolute; bottom: -10px; right: 12px; pointer-events: none; }
+    .pillar-icon { font-size: 38px; margin-bottom: 22px; }
+    .pillar h3 { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px; margin-bottom: 14px; }
+    .pillar p { color: var(--gray-lt); font-size: 15px; line-height: 1.65; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 60px; }
+    .feat { background: var(--bg2); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 36px 32px; position: relative; overflow: hidden; transition: all 0.3s; }
+    .feat::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--orange), transparent); opacity: 0; transition: opacity 0.3s; }
+    .feat:hover { border-color: rgba(255,94,0,0.28); transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
+    .feat:hover::after { opacity: 1; }
+    .feat-icon { width: 52px; height: 52px; background: rgba(255,94,0,0.1); border: 1px solid rgba(255,94,0,0.22); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 22px; }
+    .feat h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .feat p { color: var(--gray); font-size: 14px; line-height: 1.65; }
+    .pricing { background: var(--bg2); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 740px; margin: 60px auto 0; }
+    .price-card { background: var(--navy); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 48px 40px; position: relative; transition: all 0.3s; }
+    .price-card:hover { transform: translateY(-5px); box-shadow: 0 18px 52px rgba(0,0,0,0.55); }
+    .price-card.featured { border-color: var(--orange); background: linear-gradient(160deg, rgba(255,94,0,0.1) 0%, var(--navy) 55%); }
+    .featured-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--orange), var(--yellow)); color: var(--bg); padding: 5px 18px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; }
+    .plan-label { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 2px; margin-bottom: 6px; }
+    .plan-desc { color: var(--gray); font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+    .plan-price { margin-bottom: 32px; }
+    .plan-amount { font-family: 'Bebas Neue', sans-serif; font-size: 68px; line-height: 1; }
+    .plan-amount sup { font-size: 28px; vertical-align: super; }
+    .plan-period { color: var(--gray); font-size: 13px; margin-top: 4px; }
+    .plan-features { list-style: none; margin-bottom: 36px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: var(--gray-lt); }
+    .plan-features li:last-child { border-bottom: none; }
+    .chk { color: var(--orange); flex-shrink: 0; margin-top: 1px; font-size: 15px; }
+    .btn-plan { display: block; text-align: center; padding: 15px 24px; border-radius: 8px; font-weight: 700; font-size: 15px; letter-spacing: 0.4px; text-decoration: none; transition: all 0.25s; }
+    .btn-plan-orange { background: linear-gradient(135deg, var(--orange), #FF8C00); color: var(--white); box-shadow: 0 4px 20px rgba(255,94,0,0.3); }
+    .btn-plan-orange:hover { box-shadow: 0 8px 30px rgba(255,94,0,0.5); transform: translateY(-1px); }
+    .btn-plan-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--white); }
+    .btn-plan-outline:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+    .faith { text-align: center; padding: 80px 48px; }
+    .faith-inner { max-width: 720px; margin: 0 auto; padding: 56px 48px; background: var(--bg2); border: 1px solid rgba(255,94,0,0.15); border-radius: 20px; position: relative; }
+    .faith-inner::before { content: '"'; font-family: 'Bebas Neue', sans-serif; font-size: 200px; color: rgba(255,94,0,0.07); position: absolute; top: -30px; left: 24px; line-height: 1; pointer-events: none; }
+    .faith-quote { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(22px, 3.5vw, 36px); font-style: italic; font-weight: 800; line-height: 1.3; color: var(--gray-lt); margin-bottom: 20px; position: relative; }
+    .faith-ref { color: var(--orange); font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .final-cta { background: linear-gradient(160deg, rgba(255,94,0,0.14) 0%, rgba(255,182,0,0.06) 100%); border-top: 1px solid rgba(255,94,0,0.2); text-align: center; padding: 110px 48px; }
+    .final-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(54px, 9vw, 110px); line-height: 0.92; margin-bottom: 22px; }
+    .final-cta h2 .accent { display: block; background: linear-gradient(90deg, var(--orange), var(--yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .final-cta p { font-size: 18px; color: var(--gray-lt); margin-bottom: 48px; }
+    footer { background: var(--bg2); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2.5px; }
+    .footer-logo em { color: var(--orange); font-style: normal; }
+    .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom { max-width: 1080px; margin: 28px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: var(--gray); font-size: 13px; }
+    .waitlist-form { text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-input { background: var(--bg2); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 14px 18px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-input:focus { border-color: var(--orange); }
+    .form-input::placeholder { color: var(--gray); }
+    .form-radio-group { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .radio-opt { display: flex; align-items: center; gap: 8px; background: var(--bg2); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 20px; cursor: pointer; font-size: 14px; color: var(--gray-lt); transition: border-color 0.2s, background 0.2s; flex: 1; justify-content: center; }
+    .radio-opt:has(input:checked) { border-color: var(--orange); background: rgba(255,94,0,0.1); color: var(--white); }
+    .radio-opt input { accent-color: var(--orange); }
+    .btn-submit { width: 100%; display: block; border: none; cursor: pointer; font-family: 'Barlow', sans-serif; background: linear-gradient(135deg, var(--orange) 0%, #FF8C00 100%); color: var(--white); padding: 17px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; letter-spacing: 0.4px; box-shadow: 0 4px 28px rgba(255,94,0,0.38); transition: all 0.25s; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(255,94,0,0.55); }
+    .waitlist-platforms { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; color: var(--gray); font-size: 13px; }
+    .platform-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--gray-lt); }
+    .waitlist-note { color: var(--gray); font-size: 13px; margin-top: 14px; text-align: center; }
+    .form-success { display: none; text-align: center; padding: 40px 20px; }
+    .form-success-icon { font-size: 48px; margin-bottom: 16px; }
+    .form-success h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; margin-bottom: 10px; color: var(--orange); }
+    .form-success p { color: var(--gray-lt); font-size: 16px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,5,15,0.92); backdrop-filter: blur(6px); overflow-y: auto; padding: 40px 20px; }
+    .modal-overlay.open { display: block; }
+    .modal-box { max-width: 760px; margin: 0 auto; background: var(--bg2); border: 1px solid rgba(255,94,0,0.18); border-radius: 20px; padding: 56px 52px; position: relative; animation: fadeUp 0.3s ease both; }
+    .modal-close { position: absolute; top: 20px; right: 24px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: var(--white); font-size: 18px; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .modal-close:hover { background: rgba(255,94,0,0.2); }
+    .modal-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; margin-bottom: 8px; }
+    .modal-date { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px 18px; font-size: 13px; color: var(--gray); margin: 24px 0 36px; display: flex; gap: 8px; align-items: center; }
+    .modal-section { margin-bottom: 40px; }
+    .modal-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,94,0,0.2); }
+    .modal-section p { color: var(--gray-lt); font-size: 15px; line-height: 1.75; margin-bottom: 12px; }
+    .modal-section p:last-child { margin-bottom: 0; }
+    .modal-section ul { list-style: none; margin: 12px 0; }
+    .modal-section ul li { display: flex; align-items: flex-start; gap: 12px; color: var(--gray-lt); font-size: 15px; line-height: 1.7; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .modal-section ul li:last-child { border-bottom: none; }
+    .m-dot { color: var(--orange); flex-shrink: 0; margin-top: 3px; }
+    .modal-highlight { background: rgba(255,94,0,0.08); border: 1px solid rgba(255,94,0,0.18); border-radius: 10px; padding: 20px 24px; margin: 14px 0; }
+    .modal-highlight p { margin-bottom: 0; font-size: 14px; }
+    .modal-link { color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(255,94,0,0.35); }
+    .modal-link:hover { border-color: var(--orange); }
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 900px) { .nav-links { display: none; } nav { padding: 16px 24px; } section { padding: 80px 24px; } .pillars-grid { grid-template-columns: 1fr; } .features-grid { grid-template-columns: 1fr 1fr; } .pricing-grid { grid-template-columns: 1fr; max-width: 420px; } .hero-stats { gap: 28px; } footer, .faith { padding: 56px 24px; } .footer-inner { flex-direction: column; text-align: center; } .footer-links { justify-content: center; } .faith-inner { padding: 40px 28px; } .modal-box { padding: 36px 24px; } .modal-title { font-size: 38px; } }
+    @media (max-width: 560px) { .hero { padding: 110px 24px 80px; } .features-grid { grid-template-columns: 1fr; } .hero-btns { flex-direction: column; align-items: stretch; } .btn-primary, .btn-ghost { width: 100%; } .final-cta { padding: 80px 24px; } }
+  </style>
+</head>
+<body>
+  <div id="xo-bg"></div>
+  <nav>
+    <div class="nav-logo">READ <em>&</em> RIP QB</div>
+    <ul class="nav-links">
+      <li><a href="#pillars">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#waitlist" class="nav-cta">Get Early Access</a>
+  </nav>
+  <section class="hero">
+    <div class="hero-pill"><span class="hero-pill-dot"></span>QB Training App</div>
+    <h1>READ IT.<br><span class="line-accent">RIP IT.</span><br>REPEAT.</h1>
+    <p class="hero-sub">The only app built to sharpen your football IQ before you ever step on the field. Master coverages, dominate pre-snap reads, and become the QB your team needs.</p>
+    <div class="hero-btns">
+      <a href="#waitlist" class="btn-primary">Join the Waitlist<span class="btn-sub">Launching on iOS & Android</span></a>
+      <a href="#waitlist" class="btn-ghost">Coach Early Access<span class="btn-sub">Be first to know when we go live</span></a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3</div><div class="stat-label">Core Pillars</div></div>
+      <div><div class="stat-num">6+</div><div class="stat-label">App Modules</div></div>
+      <div><div class="stat-num">&#8734;</div><div class="stat-label">Mental Reps</div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="pillars" id="pillars">
+    <div class="container">
+      <div class="s-tag reveal">The Foundation</div>
+      <h2 class="s-title reveal">Three Pillars.<br>One System.</h2>
+      <p class="s-sub reveal">Everything in Read & Rip QB is built around the three traits that separate average QBs from elite ones.</p>
+      <div class="pillars-grid">
+        <div class="pillar reveal"><div class="pillar-bg-num">01</div><div class="pillar-icon">&#129504;</div><h3>Football IQ</h3><p>Read coverages pre-snap. Identify fronts. Know where the ball goes before the defense moves. Mental reps that build real-game instincts.</p></div>
+        <div class="pillar reveal"><div class="pillar-bg-num">02</div><div class="pillar-icon">&#9889;</div><h3>Mechanics</h3><p>Footwork, release, and timing. The physical side of quarterback play broken down and reinforced so every throw starts from a solid foundation.</p></div>
+        <div class="pillar reveal"><div class="pillar-bg-num">03</div><div class="pillar-icon">&#129409;</div><h3>Leadership</h3><p>QBs lead. Develop the mindset and presence to command your team from the first snap to the final drive when it matters most.</p></div>
+      </div>
+    </div>
+  </section>
+  <section id="features">
+    <div class="container">
+      <div class="s-tag reveal">Inside the App</div>
+      <h2 class="s-title reveal">Everything You<br>Need to Level Up.</h2>
+      <p class="s-sub reveal">Six powerful modules designed to turn mental reps into muscle memory.</p>
+      <div class="features-grid">
+        <div class="feat reveal"><div class="feat-icon">&#127919;</div><h3>Coverage Recognition</h3><p>Train your eyes to ID Cover 0, 1, 2, 3, 4, and beyond in seconds. The more you rep it, the faster you see it on game day.</p></div>
+        <div class="feat reveal"><div class="feat-icon">&#128203;</div><h3>Fronts & Formations</h3><p>Know what you're seeing up front. Learn defensive fronts so pre-snap adjustments feel instinctive, not reactive.</p></div>
+        <div class="feat reveal"><div class="feat-icon">&#128269;</div><h3>Pre-Snap Reads</h3><p>Process information faster than the defense can hide it. Step through structured read frameworks used at every level of the game.</p></div>
+        <div class="feat reveal"><div class="feat-icon">&#127942;</div><h3>Coverage Beaters</h3><p>Every coverage has a weakness. Know exactly where to go with the ball against any look the defense throws your way.</p></div>
+        <div class="feat reveal"><div class="feat-icon">&#128202;</div><h3>Progress Tracking</h3><p>See your improvement over time. Track quiz scores, module completion, and your growth week by week.</p></div>
+        <div class="feat reveal"><div class="feat-icon">&#129514;</div><h3>Quiz Section</h3><p>Test your knowledge with real-game scenarios. Gamified quizzes keep you locked in and coming back every session.</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="pricing" id="pricing">
+    <div class="container" style="text-align:center">
+      <div class="s-tag reveal">Pricing</div>
+      <h2 class="s-title reveal">Simple. Affordable.<br>No Gimmicks.</h2>
+      <p class="s-sub reveal" style="margin:0 auto">Whether you're a QB grinding on your own or a coach building a program, there's a plan built for you.</p>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="plan-label">QB Pro</div>
+          <div class="plan-desc">For individual quarterbacks ready to elevate their game</div>
+          <div class="plan-price"><div class="plan-amount"><sup>$</sup>7.99</div><div class="plan-period">per month, cancel anytime</div></div>
+          <ul class="plan-features">
+            <li><span class="chk">&#10022;</span> Full access to all 6 modules</li>
+            <li><span class="chk">&#10022;</span> Coverage recognition training</li>
+            <li><span class="chk">&#10022;</span> Pre-snap reads system</li>
+            <li><span class="chk">&#10022;</span> Coverage beaters library</li>
+            <li><span class="chk">&#10022;</span> Quiz section with scoring</li>
+            <li><span class="chk">&#10022;</span> Personal progress tracking</li>
+          </ul>
+          <a href="#waitlist" class="btn-plan btn-plan-outline">Join Waitlist</a>
+        </div>
+        <div class="price-card featured reveal">
+          <div class="featured-badge">For Coaches</div>
+          <div class="plan-label">Coach</div>
+          <div class="plan-desc">Team dashboard to train and monitor your QBs</div>
+          <div class="plan-price"><div class="plan-amount"><sup>$</sup>14.99</div><div class="plan-period">per month, cancel anytime</div></div>
+          <ul class="plan-features">
+            <li><span class="chk">&#10022;</span> Everything in QB Pro</li>
+            <li><span class="chk">&#10022;</span> Full coach dashboard</li>
+            <li><span class="chk">&#10022;</span> Multi-QB progress tracking</li>
+            <li><span class="chk">&#10022;</span> Team performance insights</li>
+            <li><span class="chk">&#10022;</span> Assign modules to players</li>
+            <li><span class="chk">&#10022;</span> Priority support</li>
+          </ul>
+          <a href="#waitlist" class="btn-plan btn-plan-orange">Join Waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="faith">
+    <div class="faith-inner reveal">
+      <p class="faith-quote">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+      <div class="faith-ref">John 3:16</div>
+    </div>
+  </section>
+  <section id="waitlist">
+    <div class="container" style="max-width:640px;text-align:center">
+      <div class="s-tag reveal">Early Access</div>
+      <h2 class="s-title reveal">Be First<br>In Line.</h2>
+      <p class="s-sub reveal" style="margin:0 auto 32px">Read & Rip QB is launching soon. Drop your info and we'll notify you the moment it's live.</p>
+      <div class="waitlist-platforms reveal">
+        <span class="platform-badge">&#127822; App Store</span>
+        <span style="color:var(--gray)">+</span>
+        <span class="platform-badge">&#129302; Google Play</span>
+      </div>
+      <div id="waitlist-form-wrap">
+        <form class="waitlist-form reveal" name="waitlist" method="POST" data-netlify="true" id="waitlistForm">
+          <input type="hidden" name="form-name" value="waitlist" />
+          <div class="form-row">
+            <input class="form-input" type="text" name="name" placeholder="Your name" required />
+            <input class="form-input" type="email" name="email" placeholder="Your email" required />
+          </div>
+          <div class="form-radio-group">
+            <label class="radio-opt"><input type="radio" name="role" value="QB" required /> I'm a QB</label>
+            <label class="radio-opt"><input type="radio" name="role" value="Coach" /> I'm a Coach</label>
+            <label class="radio-opt"><input type="radio" name="role" value="Parent" /> I'm a Parent</label>
+          </div>
+          <button type="submit" class="btn-submit">Get Early Access &rarr;</button>
+          <p class="waitlist-note">No spam. Just a launch notification when we go live on iOS & Android.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">&#127944;</div>
+          <h3>You're On the List!</h3>
+          <p>We'll hit you up the moment Read & Rip QB goes live. Get your mental reps in in the meantime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="reveal">READY TO<span class="accent">LEVEL UP?</span></h2>
+      <p class="reveal">Stop guessing on Friday night. Start reading today.</p>
+      <div class="hero-btns reveal">
+        <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+        <a href="#waitlist" class="btn-ghost">Get Early Access</a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">READ <em>&</em> RIP QB</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="openPrivacy();return false;">Privacy Policy</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="https://instagram.com/readandripqb" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://tiktok.com/@read.and.rip.qb" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://x.com/ReadandRipQB" target="_blank" rel="noopener">X / Twitter</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">&#169; 2026 Read & Rip QB. Built to glorify God and develop quarterbacks.</div>
+  </footer>
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closePrivacy()">&#10005;</button>
+      <div class="modal-tag">Legal</div>
+      <div class="modal-title">Privacy Policy</div>
+      <div class="modal-date">&#128197; <span><strong>Effective Date:</strong> April 7, 2026 &nbsp;|&nbsp; <strong>Last Updated:</strong> April 7, 2026</span></div>
+      <div class="modal-section"><h2>Overview</h2><p>Read & Rip QB ("we," "our," or "us") is committed to protecting your privacy. This policy applies to our website, our mobile apps (Read & Rip QB Pro and Read & Rip QB Coach), and any related services.</p><div class="modal-highlight"><p>We do not sell, rent, or trade your personal information to any third party. Ever.</p></div></div>
+      <div class="modal-section"><h2>Information We Collect</h2><ul><li><span class="m-dot">&#10022;</span><span><strong>Waitlist signups:</strong> Name, email, and role (QB, Coach, or Parent).</span></li><li><span class="m-dot">&#10022;</span><span><strong>Account info:</strong> Name, email, and password (encrypted).</span></li><li><span class="m-dot">&#10022;</span><span><strong>Usage data:</strong> Modules completed, quiz scores, and progress data.</span></li><li><span class="m-dot">&#10022;</span><span><strong>Payment info:</strong> Processed by Stripe. We never store your card details.</span></li><li><span class="m-dot">&#10022;</span><span><strong>Device info:</strong> OS and app version to help fix bugs.</span></li></ul></div>
+      <div class="modal-section"><h2>How We Use Your Information</h2><ul><li><span class="m-dot">&#10022;</span><span>To notify waitlist members when the app launches.</span></li><li><span class="m-dot">&#10022;</span><span>To provide and maintain your account and subscription.</span></li><li><span class="m-dot">&#10022;</span><span>To display your personal progress in the app.</span></li><li><span class="m-dot">&#10022;</span><span>To process subscription payments through Stripe.</span></li><li><span class="m-dot">&#10022;</span><span>To send account-related notifications (receipts, password resets).</span></li></ul><p>We will not send unsolicited marketing emails without your permission.</p></div>
+      <div class="modal-section"><h2>Third-Party Services</h2><ul><li><span class="m-dot">&#10022;</span><span><strong>Netlify</strong> - hosts our website and form submissions. <a href="https://www.netlify.com/privacy/" target="_blank" class="modal-link">Privacy Policy</a></span></li><li><span class="m-dot">&#10022;</span><span><strong>Stripe</strong> - processes payments securely. <a href="https://stripe.com/privacy" target="_blank" class="modal-link">Privacy Policy</a></span></li><li><span class="m-dot">&#10022;</span><span><strong>Apple App Store / Google Play</strong> - distributes the app per their own policies.</span></li></ul></div>
+      <div class="modal-section"><h2>Children's Privacy</h2><p>Read & Rip QB is designed for ages 12 and up. If you are under 13, please have a parent or guardian manage your account. We do not knowingly collect data from children under 13 without parental consent.</p></div>
+      <div class="modal-section"><h2>Your Rights</h2><ul><li><span class="m-dot">&#10022;</span><span>Request a copy, correction, or deletion of your personal data.</span></li><li><span class="m-dot">&#10022;</span><span>Unsubscribe from any communications at any time.</span></li><li><span class="m-dot">&#10022;</span><span>Cancel your subscription anytime through the App Store, Google Play, or by contacting us.</span></li></ul></div>
+      <div class="modal-section"><h2>Contact Us</h2><div class="modal-highlight"><p><strong>Read & Rip QB</strong><br/>Email: <a href="mailto:zachtrainor@readripqb.com" class="modal-link">zachtrainor@readripqb.com</a></p></div></div>
+    </div>
+  </div>
+  <script>
+    const bg = document.getElementById('xo-bg');
+    const syms = ['X','O','&#8594;','&#8599;','X','O'];
+    for(let i=0;i<30;i++){const s=document.createElement('span');s.textContent=syms[Math.floor(Math.random()*syms.length)];s.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*100}vh;font-size:${18+Math.random()*42}px;animation-duration:${14+Math.random()*22}s;animation-delay:${Math.random()*12}s;`;bg.appendChild(s);}
+    function openPrivacy(){document.getElementById('privacyModal').classList.add('open');document.body.style.overflow='hidden';}
+    function closePrivacy(){document.getElementById('privacyModal').classList.remove('open');document.body.style.overflow='';}
+    document.getElementById('privacyModal').addEventListener('click',function(e){if(e.target===this)closePrivacy();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closePrivacy();});
+    const form=document.getElementById('waitlistForm');
+    if(form){form.addEventListener('submit',async(e)=>{e.preventDefault();const data=new FormData(form);try{await fetch('/',{method:'POST',body:data});}catch(_){}document.getElementById('waitlistForm').style.display='none';document.getElementById('formSuccess').style.display='block';});}
+    const reveals=document.querySelectorAll('.reveal');
+    const io=new IntersectionObserver((entries)=>{entries.forEach((entry,idx)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),idx*75);io.unobserve(entry.target);}});},{threshold:0.1});
+    reveals.forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
